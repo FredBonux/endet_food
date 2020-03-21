@@ -1,0 +1,20 @@
+{
+  "short_name": "Entet-food",
+  "name": "Endet-food Web",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "logo128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FD0054",
+  "background_color": "#E5E5E5"
+}

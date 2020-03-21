@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/endet_food-web/static/css/main.757bce29.chunk.css",
+    "main.js": "/endet_food-web/static/js/main.6fccb3f8.chunk.js",
+    "main.js.map": "/endet_food-web/static/js/main.6fccb3f8.chunk.js.map",
+    "runtime-main.js": "/endet_food-web/static/js/runtime-main.6b75841e.js",
+    "runtime-main.js.map": "/endet_food-web/static/js/runtime-main.6b75841e.js.map",
+    "static/js/2.bb0917b6.chunk.js": "/endet_food-web/static/js/2.bb0917b6.chunk.js",
+    "static/js/2.bb0917b6.chunk.js.map": "/endet_food-web/static/js/2.bb0917b6.chunk.js.map",
+    "index.html": "/endet_food-web/index.html",
+    "precache-manifest.c651027dc09524ec437aabc1a9e9df70.js": "/endet_food-web/precache-manifest.c651027dc09524ec437aabc1a9e9df70.js",
+    "service-worker.js": "/endet_food-web/service-worker.js",
+    "static/css/main.757bce29.chunk.css.map": "/endet_food-web/static/css/main.757bce29.chunk.css.map",
+    "static/js/2.bb0917b6.chunk.js.LICENSE.txt": "/endet_food-web/static/js/2.bb0917b6.chunk.js.LICENSE.txt",
+    "static/media/basket.14a87a51.svg": "/endet_food-web/static/media/basket.14a87a51.svg",
+    "static/media/form.4b5ac6ec.svg": "/endet_food-web/static/media/form.4b5ac6ec.svg",
+    "static/media/home.b6c24470.svg": "/endet_food-web/static/media/home.b6c24470.svg",
+    "static/media/plus.bbfcf694.svg": "/endet_food-web/static/media/plus.bbfcf694.svg",
+    "static/media/settings.ad672166.svg": "/endet_food-web/static/media/settings.ad672166.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6b75841e.js",
+    "static/js/2.bb0917b6.chunk.js",
+    "static/css/main.757bce29.chunk.css",
+    "static/js/main.6fccb3f8.chunk.js"
+  ]
+}
