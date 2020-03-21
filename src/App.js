@@ -6,7 +6,7 @@ import './assets/app-style.scss';
 function App() {
     return (
         <div className="App">
-            <Router>
+            <Router basename={window.baseUrl}>
                 <MainRouter />
             </Router>
         </div>
