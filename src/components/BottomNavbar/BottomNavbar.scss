@@ -1,0 +1,50 @@
+@use '../../assets/styles/variables/colors' as colors;
+
+.BottomNavbar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+
+  .pages {
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 18px;
+
+    .page {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 10px;
+      width: 48px;
+
+      .text {
+        position: absolute;
+        bottom: 0;
+        font-size: 10px;
+        line-height: 10px;
+      }
+
+      color: colors.$grey;
+
+      svg {
+        fill: colors.$grey;
+      }
+
+      &.active {
+        color: colors.$primary_color;
+
+        svg {
+          fill: colors.$primary_color;
+        }
+      }
+    }
+  }
+}

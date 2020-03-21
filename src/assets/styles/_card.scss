@@ -1,0 +1,9 @@
+@use './variables/colors' as colors;
+@use './variables/shadows' as shadows;
+
+.card {
+  padding: 10px;
+  box-shadow: shadows.$card_default_shadow;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}

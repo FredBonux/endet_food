@@ -1,0 +1,12 @@
+@use '../../assets/styles/variables/colors' as colors;
+@use '../../assets/styles/modals';
+
+.ProductScanModal {
+  @include modals.modal-base;
+
+  .reader {
+    width: 100%;
+    height: calc(100vh - 72px);
+  }
+
+}

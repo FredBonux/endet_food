@@ -1,0 +1,6 @@
+@use "src/assets/styles/variables/colors" as colors;
+
+body {
+  min-height: 100vh;
+  background-color: colors.$light_color;
+}

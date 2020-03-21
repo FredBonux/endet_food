@@ -1,0 +1,51 @@
+@use '../../assets/styles/variables/colors' as colors;
+
+.ProductCard {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+
+  .product-image {
+    width: 54px;
+    height: 72px;
+  }
+
+  .content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: 12px;
+
+    .expiry {
+      font-weight: bold;
+      font-size: 10px;
+      line-height: 10px;
+    }
+
+    .name {
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: auto;
+
+      .nutriscore, .novagroup {
+        height: 32px;
+      }
+
+      .novagroup {
+        margin-left: 10px;
+      }
+
+      .qta {
+        font-weight: bold;
+        font-size: 16px;
+        margin-left: auto;
+        margin-top: auto;
+      }
+    }
+  }
+}

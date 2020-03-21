@@ -1,0 +1,20 @@
+@use '../../assets/styles/variables/colors' as colors;
+
+.Header {
+  padding: 30px 25px;
+  height: 180px;
+  box-sizing: border-box;
+  margin-bottom: -56px;
+
+  .app-title, .app-subtitle {
+    color: #000000;
+  }
+
+  &.withBackground {
+    background: colors.$primary_gradient;
+
+    .app-title, .app-subtitle {
+      color: #FFFFFF;
+    }
+  }
+}

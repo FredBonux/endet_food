@@ -1,0 +1,18 @@
+// plop imports section
+
+const DEFAULT_STATE = {
+
+};
+
+const handlers = {};
+
+// plop action handlers section
+
+function {{camelCase name}}Reducer(state = DEFAULT_STATE, action) {
+  if(typeof handlers[action.type] === 'function'){
+    return handlers[action.type](state, action);
+  }
+  return state;
+}
+
+export default {{ camelCase name }}Reducer;

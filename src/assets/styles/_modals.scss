@@ -1,0 +1,43 @@
+@use './variables/colors';
+
+@mixin modal-base{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFFFFF;
+  z-index: 2;
+
+  transform: translateY(100%) translateZ(0);
+  will-change: transform;
+  transition: transform 300ms;
+
+  .header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 72px;
+
+    .app-title {
+      font-size: 18px;
+      line-height: 18px;
+    }
+
+    .close-btn {
+      position: absolute;
+      left: 24px;
+      height: 24px;
+
+      svg {
+        transform: rotate(45deg);
+        fill: colors.$grey;
+      }
+    }
+  }
+
+  &.open {
+    transform: none;
+  }
+}
