@@ -1,0 +1,16 @@
+.SearchContainer {
+  padding: 0 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .loading, .waiting {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .SearchResult {
+    width: 100%;
+    margin: 5px 0;
+  }
+}

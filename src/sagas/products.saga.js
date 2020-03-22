@@ -15,22 +15,32 @@ import {ACTION_OPEN_PRODUCT_INSERT_MODAL} from "../actions/modals.actions";
 // plop saga action handlers section
 function* onProductScan(action) {
   const { payload } = action;
-  const url = `https://world.openfoodfacts.org/api/v0/product/${payload.code}.json?fields=image_thumb_url,product_name,nutrition_grades,nova_group,ingredients_text_it,ingredients_text_en,ingredients_text`;
-  const json = yield fetch(url).then(r => r.json());
-
-  if(json.status === 1 && json.product) {
+  if(payload.code && payload.product_name?.length > 0) {
     yield put({
       type: ACTION_PRODUCT_SCAN_SUCCESS,
-      payload: json.product
+      payload: payload
     });
     yield put({
       type: ACTION_OPEN_PRODUCT_INSERT_MODAL
     })
   } else {
-    yield put({
-      type: ACTION_PRODUCT_SCAN_FAILURE,
-      payload: json
-    });
+    const url = `https://world.openfoodfacts.org/api/v0/product/${payload.code}.json?fields=image_thumb_url,product_name,nutrition_grades,nova_group,ingredients_text_it,ingredients_text_en,ingredients_text`;
+    const json = yield fetch(url).then(r => r.json());
+
+    if (json.status === 1 && json.product) {
+      yield put({
+        type: ACTION_PRODUCT_SCAN_SUCCESS,
+        payload: json.product
+      });
+      yield put({
+        type: ACTION_OPEN_PRODUCT_INSERT_MODAL
+      })
+    } else {
+      yield put({
+        type: ACTION_PRODUCT_SCAN_FAILURE,
+        payload: json
+      });
+    }
   }
 }
 

@@ -6,7 +6,36 @@
 
   .reader {
     width: 100%;
-    height: calc(100vh - 72px);
+    height: calc(100vh - 72px - 38px);
+    background-color: colors.$light_color;
+
+    &.searching {
+      overflow: auto;
+    }
+
+    .SearchContainer {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      min-height: 100%;
+    }
+  }
+
+  .search-container {
+    height: 32px;
+    margin-bottom: 6px;
+
+    form {
+      height: 100%;
+
+      input {
+        height: 100%;
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0 10px;
+        font-size: 18px;
+      }
+    }
   }
 
 }

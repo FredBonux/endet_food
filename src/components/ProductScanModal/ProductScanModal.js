@@ -1,13 +1,18 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './ProductScanModal.scss';
 import { connect } from "react-redux";
 import { ReactComponent as TimesIcon } from "../../assets/icons/plus.svg";
 import {closeScanModalAction} from "../../actions/modals.actions";
 import Scanner from "../Scanner/Scanner";
 import {productScanAction} from "../../actions/products.actions";
+import {searchProductAction} from "../../actions/search.actions";
+import SearchContainer from "../../containers/SearchContainer/SearchContainer";
 
-const ProductScanModal = ({open, closeModal, productScan}) => {
+const ProductScanModal = ({open, closeModal, productScan, searchForProduct}) => {
+    const [searchValue, setSearchValue] = useState("");
+    const [canUseCamera, setCanUseCamera] = useState(true);
     const ScannerRef = useRef(null);
+    const InputRef = useRef(null);
 
     const onCodeDetect = (result) => {
         if(!open) return;
@@ -21,6 +26,32 @@ const ProductScanModal = ({open, closeModal, productScan}) => {
         closeModal();
     };
 
+    const _onSearch = (e) => {
+        e.preventDefault();
+        if(ScannerRef.current) ScannerRef.current.stop();
+        if(searchValue.length <= 2) return;
+        if(InputRef.current) InputRef.current.blur();
+        searchForProduct(searchValue);
+    };
+
+    const _onSearchValueInputChange = e => {
+        const value = e.target.value;
+        if(value.length > 0 && ScannerRef.current) ScannerRef.current.stop();
+        setSearchValue(value);
+    };
+
+    const _onCameraError = () => {
+        if(ScannerRef.current) ScannerRef.current.stop();
+        setCanUseCamera(false);
+    };
+
+    const _onProductSelect = product => {
+        if(product.code) {
+            closeModal();
+            productScan(product);
+        }
+    };
+
     return (
         <div className={`ProductScanModal ${open ? 'open' : ''}`}>
             <div className={'header'}>
@@ -29,8 +60,27 @@ const ProductScanModal = ({open, closeModal, productScan}) => {
                 </div>
                 <div className={'app-title'}>Scansiona il codice a barre</div>
             </div>
-            <div className={'reader'}>
-                {open && <Scanner ref={ScannerRef} onDetected={onCodeDetect.bind(this)}/>}
+            <div className={'search-container'}>
+                <form onSubmit={_onSearch.bind(this)}>
+                    <input
+                        type={'text'}
+                        value={searchValue}
+                        placeholder={'Cerca un prodotto'}
+                        ref={InputRef}
+                        onChange={_onSearchValueInputChange.bind(this)}
+                    />
+                </form>
+            </div>
+            <div className={`reader ${open && canUseCamera && searchValue.length <= 0 ? '':'searching'}`}>
+                {open && canUseCamera && searchValue.length <= 0 ?
+                    <Scanner
+                        ref={ScannerRef}
+                        onDetected={onCodeDetect.bind(this)}
+                        onError={_onCameraError.bind(this)}
+                    />
+                    :
+                    <SearchContainer onProductSelect={_onProductSelect.bind(this)}/>
+                }
             </div>
         </div>
     );
@@ -42,6 +92,7 @@ export default connect(
     }),
     {
         closeModal: closeScanModalAction,
-        productScan: productScanAction
+        productScan: productScanAction,
+        searchForProduct: searchProductAction
     }
 )(ProductScanModal);

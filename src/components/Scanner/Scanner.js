@@ -17,11 +17,16 @@ export default class Scanner extends Component {
         this.props.onDetected(result);
     }
 
+    _onError(result) {
+        this.props.onError(result);
+    }
+
     stop() {
         Quagga.stop();
     }
 
     componentDidMount() {
+        let that = this;
         Quagga.init({
             inputStream: {
                 type: "LiveStream",
@@ -47,6 +52,7 @@ export default class Scanner extends Component {
             locate: true
         }, function (err) {
             if (err) {
+                that._onError(err);
                 return console.log(err);
             }
             Quagga.start();

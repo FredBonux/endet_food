@@ -4,10 +4,18 @@
 .ProductInsertModal {
   @include modals.modal-base;
 
+  .header {
+    .close-btn {
+      svg {
+        transform: none;
+      }
+    }
+  }
+
   .content {
     background-color: colors.$light_color;
     height: calc(100vh - 72px);
-    padding: 20px 24px;
+    padding: 20px 16px;
     display: flex;
     flex-direction: column;
 
@@ -15,9 +23,10 @@
       display: flex;
 
       .product-image {
-        min-width: 70px;
-        max-width: 70px;
-        height: 88px;
+        min-width: 88px;
+        max-width: 88px;
+        height: 110px;
+        margin-right: 10px;
       }
 
       .product-info {
@@ -33,6 +42,7 @@
         .description {
           max-height: 100px;
           overflow-y: auto;
+          line-height: 15px;
 
           .title {
             font-weight: bold;
@@ -44,7 +54,6 @@
             margin-top: 10px;
             font-weight: normal;
             font-size: 10px;
-            line-height: 15px;
           }
 
           padding-bottom: 10px;
@@ -61,6 +70,34 @@
       .nutriscore, .novagroup {
         height: 49px;
         margin: 0 10px;
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      .input-group {
+        min-height: 68px;
+        margin-top: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        .label {
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 15px;
+        }
+
+        input {
+          margin: 6px 0 0;
+          border: 0;
+          background-color: transparent;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 22px;
+        }
       }
     }
   }

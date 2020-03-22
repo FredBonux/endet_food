@@ -1,0 +1,23 @@
+@use '../../assets/styles/variables/colors' as colors;
+
+.SearchResult {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+
+  .product-image {
+    width: 54px;
+    height: 72px;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 10px;
+  }
+
+  &:active {
+    background-color: colors.$light_color;
+  }
+}
