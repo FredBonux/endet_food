@@ -1,3 +1,4 @@
+@use 'variables/colors';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 body {
@@ -12,4 +13,8 @@ body {
 .app-subtitle {
   font-size: 14px;
   line-height: 17px;
+}
+
+.text-danger {
+  color: colors.$primary_color_dark;
 }

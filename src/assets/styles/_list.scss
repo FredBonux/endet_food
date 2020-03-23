@@ -1,0 +1,9 @@
+@mixin App-PantryList {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+
+  .ProductCard {
+    margin: 5px 0;
+  }
+}

@@ -10,21 +10,18 @@ import {ReactComponent as PlusIcon} from "../../assets/icons/plus.svg";
 import {openScanModalAction} from "../../actions/modals.actions";
 import ProductScanModal from "../../components/ProductScanModal/ProductScanModal";
 import ProductInsertModal from "../../components/ProductInsertModal/ProductInsertModal";
+import PantryExpiringList from "../../components/PantryExpiringList/PantryExpiringList";
 
-const HomePage = ({product, fetchProduct, openScanModal}) => {
-    useEffect(() => {
-        if(!product) fetchProduct();
-    }, [fetchProduct, product]);
-
+const HomePage = ({expiring, openScanModal}) => {
     return (
         <DefaultLayout>
             <Header
                 withBackground={true}
-                subtitle={[`Hai `, <strong>4</strong>, ` prodotti in scadenza`]}
+                subtitle={[`Hai `, <strong>{expiring?.length || 0}</strong>, ` prodotti in scadenza`]}
             />
             <div className={"HomePage"}>
                 <div className={'content'}>
-                    {product && <ProductCard product={product} />}
+                    <PantryExpiringList />
                 </div>
                 <FloatingActionButton onClickEvent={() => openScanModal()}>
                     <PlusIcon/>
@@ -38,7 +35,7 @@ const HomePage = ({product, fetchProduct, openScanModal}) => {
 
 export default connect(
     state => ({
-        product: state.products.product
+        expiring: state.pantry.expiring.data
     }),
     {
         fetchProduct: fetchProductAction,

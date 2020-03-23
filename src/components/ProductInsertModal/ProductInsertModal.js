@@ -3,8 +3,9 @@ import './ProductInsertModal.scss';
 import { connect } from "react-redux";
 import { ReactComponent as ArrowLeftIcon } from "../../assets/icons/arrow-left.svg";
 import {closeProductInsertModalAction, openScanModalAction} from "../../actions/modals.actions";
+import {addProductToPantryAction} from "../../actions/pantry.actions";
 
-const ProductInsertModal = ({open, closeModal, openScanModal, product}) => {
+const ProductInsertModal = ({open, closeModal, openScanModal, product, addProduct}) => {
     const [qtaValue, setQtaValue] = useState("");
     const [dateValue, setDateValue] = useState((new Date()).toISOString().substr(0, 10));
 
@@ -17,6 +18,16 @@ const ProductInsertModal = ({open, closeModal, openScanModal, product}) => {
         resetModal();
         closeModal();
         openScanModal();
+    };
+
+    const _onAddBtnClick = () => {
+        addProduct({
+            ...product,
+            qta: qtaValue,
+            expiryDate: dateValue
+        });
+        resetModal();
+        closeModal();
     };
 
     return (
@@ -52,6 +63,7 @@ const ProductInsertModal = ({open, closeModal, openScanModal, product}) => {
                         <div className={'label'}>Data di scadenza</div>
                         <input type="date" className={'date'} placeholder={'tra 5 giorni'} value={dateValue} onChange={e => setDateValue(e.target.value)}/>
                     </div>
+                    <div onClick={_onAddBtnClick.bind(this)} className={'btn btn-success'}>AGGIUNGI PRODOTTO</div>
                 </div>
             </div>
         </div>
@@ -66,6 +78,7 @@ export default connect(
     }),
     {
         closeModal: closeProductInsertModalAction,
-        openScanModal: openScanModalAction
+        openScanModal: openScanModalAction,
+        addProduct: addProductToPantryAction
     }
 )(ProductInsertModal);

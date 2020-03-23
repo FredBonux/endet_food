@@ -1,0 +1,6 @@
+@use '../../assets/styles/variables/colors' as colors;
+@use '../../assets/styles/list';
+
+.PantryExpiringList {
+  @include list.App-PantryList;
+}

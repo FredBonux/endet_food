@@ -1,5 +1,6 @@
 @use './variables/colors' as colors;
 @use './variables/shadows' as shadows;
+@use 'sass:color' as sassColors;
 
 .card {
   padding: 10px;

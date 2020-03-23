@@ -1,0 +1,24 @@
+@use './variables/shadows' as shadows;
+@use './variables/colors' as colors;
+@use 'sass:color' as color_helpers;
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: shadows.$btn_default_shadow;
+  background-color: #ffffff;
+
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+
+  &.btn-success {
+    background-color: colors.$green;
+    color: #ffffff;
+
+    &:active {
+      background-color: color_helpers.adjust(colors.$green, $lightness: -10);
+    }
+  }
+}

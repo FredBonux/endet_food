@@ -10,13 +10,7 @@ import {
 function* onSearchProduct(action) {
   const { payload } = action;
   const json = yield fetch(
-      `https://it.openfoodfacts.org/cgi/search.pl?
-      action=process
-      &json=true
-      &simple_search=1
-      &sort_by=unique_scans_n
-      &fields=code,image_thumb_url,product_name,nutrition_grades,nova_group,ingredients_text_it,ingredients_text_en,ingredients_text
-      &search_terms=${encodeURI(payload)}`
+      `https://it.openfoodfacts.org/cgi/search.pl?action=process&json=true&simple_search=1&sort_by=unique_scans_n&fields=code,image_thumb_url,product_name,nutrition_grades,nova_group,ingredients_text_it,ingredients_text_en,ingredients_text&search_terms=${encodeURI(payload)}`
   ).then(r => r.json());
 
   if(json) {

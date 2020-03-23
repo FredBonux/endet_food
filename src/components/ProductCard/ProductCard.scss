@@ -48,4 +48,12 @@
       }
     }
   }
+
+  &.expired {
+    border-bottom: 6px solid colors.$primary_color_dark;
+  }
+
+  &.expiring {
+    border-bottom: 6px solid colors.$orange;
+  }
 }
