@@ -14,9 +14,8 @@ class _PantryLocalStorageService {
         const lsResult = localStorage.getItem(this.lsKey);
         const jsonResult = JSON.parse(lsResult);
         if(!jsonResult) return [];
-
-        this._pantry = jsonResult;
-        return jsonResult;
+        this._pantry = this._mapPantry(jsonResult);
+        return this._pantry;
     }
 
     getExpiring() {
@@ -32,12 +31,12 @@ class _PantryLocalStorageService {
         const lsString = JSON.stringify(newPantry);
         if(!lsString) return;
         localStorage.setItem(this.lsKey, lsString);
-        this._pantry = newPantry;
+        this._pantry = this._mapPantry(newPantry);
     }
 
-    insertIntoPantry(product) {
+    insertIntoPantry(product, lsKey) {
         let pantry = this.getPantry();
-        let index = pantry.findIndex(p => p.code === product.code);
+        let index = lsKey || product.lsKey || -1;
         if(index < 0) return this._addToPantry(product);
         pantry[index] = product;
         this.setPantry(pantry);
@@ -49,9 +48,25 @@ class _PantryLocalStorageService {
         this.setPantry(pantry);
     }
 
-    getProduct(code) {
+    _mapPantry(input) {
+        return input.map((p, index) => {
+            p.lsKey = index;
+            p.dateDiff = -moment(new Date()).diff(p.expiryDate, "days");
+            return p;
+        }).sort((a,b) => a.dateDiff - b.dateDiff);
+    }
+
+    getProduct(lsKey) {
         let pantry = this.getPantry();
-        return pantry.find(p => p.code === code);
+        return pantry[lsKey];
+    }
+
+    removeFromPantry(product) {
+        let pantry = this.getPantry();
+        let index = product.lsKey;
+        if(index < 0 || index === undefined || index === null) return;
+        pantry.splice(index, 1);
+        this.setPantry(pantry);
     }
 }
 

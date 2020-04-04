@@ -2,6 +2,9 @@ import React from 'react';
 import {BrowserRouter as Router} from "react-router-dom";
 import MainRouter from "./config/router/MainRouter";
 import './assets/app-style.scss';
+import ProductScanModal from "./components/ProductScanModal/ProductScanModal";
+import ProductInsertModal from "./components/ProductInsertModal/ProductInsertModal";
+import ProductUpdateModal from "./components/ProductUpdateModal/ProductUpdateModal";
 
 function App() {
     return (
@@ -9,6 +12,9 @@ function App() {
             <Router basename={window.baseUrl}>
                 <MainRouter />
             </Router>
+            <ProductScanModal/>
+            <ProductInsertModal/>
+            <ProductUpdateModal/>
         </div>
     );
 }

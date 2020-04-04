@@ -21,4 +21,13 @@
       background-color: color_helpers.adjust(colors.$green, $lightness: -10);
     }
   }
+
+  &.btn-simple {
+    background: none;
+    box-shadow: none;
+
+    &:hover {
+      background: rgba(0,0,0,.2);
+    }
+  }
 }

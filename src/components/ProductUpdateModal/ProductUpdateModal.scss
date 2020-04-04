@@ -1,0 +1,112 @@
+@use '../../assets/styles/variables/colors' as colors;
+@use '../../assets/styles/modals';
+
+.ProductUpdateModal {
+  @include modals.modal-base;
+
+  .header {
+    .close-btn {
+      svg {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+
+  .content {
+    background-color: colors.$light_color;
+    height: calc(100vh - 72px);
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+
+    .product-head {
+      display: flex;
+
+      .product-image {
+        min-width: 88px;
+        max-width: 88px;
+        height: 110px;
+        margin-right: 10px;
+      }
+
+      .product-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+
+        .product-name {
+          font-weight: bold;
+          font-size: 16px;
+        }
+
+        .description {
+          max-height: 100px;
+          overflow-y: auto;
+          line-height: 15px;
+
+          .title {
+            font-weight: bold;
+            font-size: 12px;
+            color: colors.$dark_color;
+          }
+
+          .ingredients {
+            margin-top: 10px;
+            font-weight: normal;
+            font-size: 10px;
+          }
+
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    .nutriscore-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+
+      .nutriscore, .novagroup {
+        height: 49px;
+        margin: 0 10px;
+      }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+
+      .input-group {
+        min-height: 68px;
+        margin-top: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+
+        .label {
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 15px;
+        }
+
+        input {
+          margin: 6px 0 0;
+          border: 0;
+          background-color: transparent;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 22px;
+        }
+      }
+
+      .btn.btn-success {
+        margin: 20px 24px 10px;
+      }
+
+      .btn.btn-danger {
+        margin: 0 24px;
+      }
+    }
+  }
+}

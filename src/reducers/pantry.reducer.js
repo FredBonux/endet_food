@@ -1,4 +1,5 @@
 // plop imports section
+import { ACTION_REMOVE_PRODUCT_FROM_PANTRY, ACTION_REMOVE_PRODUCT_FROM_PANTRY_SUCCESS, ACTION_REMOVE_PRODUCT_FROM_PANTRY_FAILURE } from '../actions/pantry.actions';
 import { ACTION_FETCH_PANTRY, ACTION_FETCH_PANTRY_SUCCESS, ACTION_FETCH_PANTRY_FAILURE } from '../actions/pantry.actions';
 import { ACTION_ADD_PRODUCT_TO_PANTRY, ACTION_ADD_PRODUCT_TO_PANTRY_SUCCESS, ACTION_ADD_PRODUCT_TO_PANTRY_FAILURE } from '../actions/pantry.actions';
 
@@ -18,6 +19,25 @@ const DEFAULT_STATE = {
 const handlers = {};
 
 // plop action handlers section
+handlers[ACTION_REMOVE_PRODUCT_FROM_PANTRY] = function (state, action){
+  const newState = {...state};
+
+  return newState;
+};
+
+handlers[ACTION_REMOVE_PRODUCT_FROM_PANTRY_SUCCESS] = function (state, action){
+  const newState = {...state};
+
+  return newState;
+};
+
+handlers[ACTION_REMOVE_PRODUCT_FROM_PANTRY_FAILURE] = function (state, action){
+  const newState = {...state};
+
+  return newState;
+};
+
+
 handlers[ACTION_FETCH_PANTRY] = function (state, action){
   const newState = {...state};
   newState.fetch = {

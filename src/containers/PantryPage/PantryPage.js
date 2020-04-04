@@ -1,23 +1,23 @@
 import React from "react";
 import DefaultLayout from "../../layouts/DefaultLayout/DefaultLayout";
 import Header from "../../components/Header/Header";
-import './HomePage.scss';
+import './PantryPage.scss';
 import { connect } from "react-redux";
 import FloatingActionButton from "../../components/FloatingActionButton/FloatingActionButton";
 import {ReactComponent as PlusIcon} from "../../assets/icons/plus.svg";
 import {openScanModalAction} from "../../actions/modals.actions";
-import PantryExpiringList from "../../components/PantryExpiringList/PantryExpiringList";
+import PantryList from "../../components/PantryList/PantryList";
 
-const HomePage = ({expiring, openScanModal}) => {
+const PantryPage = ({openScanModal}) => {
     return (
         <DefaultLayout>
             <Header
-                withBackground={true}
-                subtitle={[`Hai `, <strong key={'expiring-length'}>{expiring?.length || 0}</strong>, ` prodotti in scadenza`]}
+                withBackground={false}
+                subtitle={"Ecco cosa hai in dispensa"}
             />
-            <div className={"HomePage"}>
+            <div className={"PantryPage"}>
                 <div className={'content'}>
-                    <PantryExpiringList />
+                    <PantryList />
                 </div>
                 <FloatingActionButton onClickEvent={() => openScanModal()}>
                     <PlusIcon/>
@@ -28,10 +28,8 @@ const HomePage = ({expiring, openScanModal}) => {
 };
 
 export default connect(
-    state => ({
-        expiring: state.pantry.expiring.data
-    }),
+    state => ({}),
     {
         openScanModal: openScanModalAction
     }
-)(HomePage);
+)(PantryPage);

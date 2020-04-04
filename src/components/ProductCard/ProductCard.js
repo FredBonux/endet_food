@@ -3,14 +3,13 @@ import './ProductCard.scss';
 import moment from "moment";
 import 'moment/locale/it';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({product, onClickEvent}) => {
     moment.locale('it');
     const dateDiffText = moment(product?.expiryDate, "YYYY-MM-DD").fromNow();
     const dateDiff = - moment(new Date()).diff(product.expiryDate, "days");
-    console.log("datediff", dateDiff);
-    let dateDiffClass = dateDiff <= 0 ? 'expired' : 'expiring';
+    let dateDiffClass = dateDiff <= 0 ? 'expired' : (dateDiff <= 3 ? 'expiring' : '');
     return (
-        <div className={`ProductCard card ${dateDiffClass}`}>
+        <div onClick={onClickEvent.bind(this)} className={`ProductCard card ${dateDiffClass}`}>
             <img className={'product-image'} src={product?.image_thumb_url} alt={"product_image"}/>
             <div className={'content'}>
                 <div className={`expiry`}>{dateDiffText}</div>

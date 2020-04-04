@@ -1,5 +1,7 @@
 import { takeEvery, takeLatest, call, put } from 'redux-saga/effects';
 // plop imports section
+import { ACTION_PRODUCT_UPDATE_CANCEL } from '../actions/products.actions';
+import {ACTION_SELECT_UPDATING_PRODUCT, ACTION_SELECT_UPDATING_PRODUCT_SUCCESS} from '../actions/products.actions';
 import {
   ACTION_PRODUCT_SCAN,
   ACTION_PRODUCT_SCAN_FAILURE,
@@ -10,9 +12,25 @@ import {
   ACTION_FETCH_PRODUCT_FAILURE,
   ACTION_FETCH_PRODUCT_SUCCESS
 } from '../actions/products.actions';
-import {ACTION_OPEN_PRODUCT_INSERT_MODAL} from "../actions/modals.actions";
+import {ACTION_OPEN_PRODUCT_INSERT_MODAL, ACTION_OPEN_UPDATE_PRODUCT_MODAL} from "../actions/modals.actions";
+import PantryService from "../libs/PantryLocalStorageService";
 
 // plop saga action handlers section
+function* onProductUpdateCancel(action) {
+  const { payload } = action;
+}
+
+function* onSelectUpdatingProduct(action) {
+  const { payload } = action;
+  yield put({
+    type: ACTION_SELECT_UPDATING_PRODUCT_SUCCESS,
+    payload: PantryService.getProduct(payload)
+  });
+  yield put({
+    type: ACTION_OPEN_UPDATE_PRODUCT_MODAL
+  })
+}
+
 function* onProductScan(action) {
   const { payload } = action;
   if(payload.code && payload.product_name?.length > 0) {
@@ -65,6 +83,8 @@ function* onFetchProduct(action) {
 
 function* productsSaga() {
   // plop sagas section
+yield takeEvery(ACTION_PRODUCT_UPDATE_CANCEL, onProductUpdateCancel);
+yield takeEvery(ACTION_SELECT_UPDATING_PRODUCT, onSelectUpdatingProduct);
 yield takeLatest(ACTION_PRODUCT_SCAN, onProductScan);
 yield takeEvery(ACTION_FETCH_PRODUCT, onFetchProduct);
 }
