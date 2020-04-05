@@ -2,7 +2,7 @@
   "name": "endet_food-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://endet.federicobono.me",
   "main": "index.js",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

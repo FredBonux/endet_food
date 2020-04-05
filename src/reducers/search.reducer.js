@@ -1,4 +1,5 @@
 // plop imports section
+import { ACTION_CLEAR_SEARCH_RESULT } from '../actions/search.actions';
 import { ACTION_SEARCH_PRODUCT, ACTION_SEARCH_PRODUCT_SUCCESS, ACTION_SEARCH_PRODUCT_FAILURE } from '../actions/search.actions';
 
 const DEFAULT_STATE = {
@@ -11,6 +12,13 @@ const DEFAULT_STATE = {
 const handlers = {};
 
 // plop action handlers section
+handlers[ACTION_CLEAR_SEARCH_RESULT] = function (state, action){
+  return {
+    ...DEFAULT_STATE
+  };
+};
+
+
 handlers[ACTION_SEARCH_PRODUCT] = function (state, action){
   let newState = {...state};
   newState = {

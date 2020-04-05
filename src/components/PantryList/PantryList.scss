@@ -3,4 +3,21 @@
 
 .PantryList {
   @include list.App-PantryList;
+
+  .list-header {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    label {
+      color: colors.$grey;
+      margin-right: 6px;
+    }
+
+    select {
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
 }

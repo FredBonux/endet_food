@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeLatest, put } from 'redux-saga/effects';
 // plop imports section
 import {
   ACTION_SEARCH_PRODUCT,
@@ -7,6 +7,7 @@ import {
 } from '../actions/search.actions';
 
 // plop saga action handlers section
+
 function* onSearchProduct(action) {
   const { payload } = action;
   const json = yield fetch(
@@ -28,7 +29,7 @@ function* onSearchProduct(action) {
 
 function* searchSaga() {
   // plop sagas section
-yield takeEvery(ACTION_SEARCH_PRODUCT, onSearchProduct);
+yield takeLatest(ACTION_SEARCH_PRODUCT, onSearchProduct);
 }
 
 export default searchSaga;

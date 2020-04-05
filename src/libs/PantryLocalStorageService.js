@@ -36,7 +36,7 @@ class _PantryLocalStorageService {
 
     insertIntoPantry(product, lsKey) {
         let pantry = this.getPantry();
-        let index = lsKey || product.lsKey || -1;
+        let index = lsKey !== undefined ? lsKey : (product.lsKey !== undefined ? product.lsKey : -1);
         if(index < 0) return this._addToPantry(product);
         pantry[index] = product;
         this.setPantry(pantry);
@@ -50,10 +50,9 @@ class _PantryLocalStorageService {
 
     _mapPantry(input) {
         return input.map((p, index) => {
-            p.lsKey = index;
-            p.dateDiff = -moment(new Date()).diff(p.expiryDate, "days");
-            return p;
-        }).sort((a,b) => a.dateDiff - b.dateDiff);
+                p.lsKey = index;
+                return p;
+            });
     }
 
     getProduct(lsKey) {

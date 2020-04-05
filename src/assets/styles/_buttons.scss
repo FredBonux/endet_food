@@ -13,6 +13,10 @@
   line-height: 17px;
   text-align: center;
 
+  &:active {
+    background-color: colors.$light_color;
+  }
+
   &.btn-success {
     background-color: colors.$green;
     color: #ffffff;
@@ -26,7 +30,7 @@
     background: none;
     box-shadow: none;
 
-    &:hover {
+    &:active {
       background: rgba(0,0,0,.2);
     }
   }

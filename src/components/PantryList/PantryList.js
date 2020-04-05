@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux';
 import './PantryList.scss';
 import {fetchPantryAction} from "../../actions/pantry.actions";
@@ -6,7 +6,9 @@ import {selectUpdatingProductAction} from "../../actions/products.actions";
 import ProductCard from "../ProductCard/ProductCard";
 
 const PantryList = ({products, fetchProducts, openUpdateProduct}) => {
-    useState(() => {
+    const [currentSort, setCurrentSort] = useState("expiryDate");
+
+    useEffect(() => {
         if(products === null) fetchProducts();
     });
 
@@ -14,7 +16,9 @@ const PantryList = ({products, fetchProducts, openUpdateProduct}) => {
         openUpdateProduct(code);
     };
 
-    const list = products?.map(product =>
+    const sortedProducts = products?.sort((a, b) => a[currentSort] > b[currentSort] ? 1 : -1);
+
+    const list = sortedProducts?.map(product =>
         <ProductCard
             onClickEvent={() => _openUpdateProductModal(product.lsKey)}
             key={`pantry-product-${product.code}-${product.lsKey}`}
@@ -23,7 +27,18 @@ const PantryList = ({products, fetchProducts, openUpdateProduct}) => {
 
     return (
         <div className={`PantryList`}>
-            {list}
+            <div className={'list-header'}>
+                <label>Ordina per:</label>
+                <select onChange={e => setCurrentSort(e.target.value)}>
+                    <option value={'expiryDate'}>Data scadenza</option>
+                    <option value={'product_name'}>Nome</option>
+                    <option value={'nova_group'}>Nova group</option>
+                    <option value={'nutrition_grades'}>Nutriscore</option>
+                </select>
+            </div>
+            <div className={'list'}>
+                {list}
+            </div>
         </div>
     );
 };

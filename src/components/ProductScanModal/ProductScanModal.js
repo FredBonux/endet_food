@@ -1,14 +1,14 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './ProductScanModal.scss';
 import { connect } from "react-redux";
 import { ReactComponent as TimesIcon } from "../../assets/icons/plus.svg";
-import {closeScanModalAction} from "../../actions/modals.actions";
+import {closeScanModalAction, openProductManualInsertModalAction} from "../../actions/modals.actions";
 import Scanner from "../Scanner/Scanner";
 import {productScanAction} from "../../actions/products.actions";
 import {searchProductAction} from "../../actions/search.actions";
 import SearchContainer from "../../containers/SearchContainer/SearchContainer";
 
-const ProductScanModal = ({open, closeModal, productScan, searchForProduct}) => {
+const ProductScanModal = ({open, closeModal, productScan, searchForProduct, openManualInsertModal}) => {
     const [searchValue, setSearchValue] = useState("");
     const [canUseCamera, setCanUseCamera] = useState(true);
     const ScannerRef = useRef(null);
@@ -23,6 +23,7 @@ const ProductScanModal = ({open, closeModal, productScan, searchForProduct}) => 
 
     const _closeModal = () => {
         if(ScannerRef.current) ScannerRef.current.stop();
+        setSearchValue("");
         closeModal();
     };
 
@@ -50,6 +51,11 @@ const ProductScanModal = ({open, closeModal, productScan, searchForProduct}) => 
             closeModal();
             productScan(product);
         }
+    };
+
+    const _onManualInsertClick = () => {
+        _closeModal();
+        openManualInsertModal();
     };
 
     return (
@@ -82,6 +88,7 @@ const ProductScanModal = ({open, closeModal, productScan, searchForProduct}) => 
                     <SearchContainer onProductSelect={_onProductSelect.bind(this)}/>
                 }
             </div>
+            {searchValue.length <= 0 && <div onClick={_onManualInsertClick.bind(this)} className={'btn add-custom-btn'}>Inserisci manualmente</div>}
         </div>
     );
 };
@@ -93,6 +100,7 @@ export default connect(
     {
         closeModal: closeScanModalAction,
         productScan: productScanAction,
-        searchForProduct: searchProductAction
+        searchForProduct: searchProductAction,
+        openManualInsertModal: openProductManualInsertModalAction
     }
 )(ProductScanModal);

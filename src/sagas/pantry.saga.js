@@ -7,6 +7,7 @@ import {
   ACTION_ADD_PRODUCT_TO_PANTRY,
   ACTION_ADD_PRODUCT_TO_PANTRY_SUCCESS
 } from '../actions/pantry.actions';
+import {ACTION_CLEAR_SEARCH_RESULT} from "../actions/search.actions";
 
 // plop saga action handlers section
 function* onRemoveProductFromPantry(action) {
@@ -38,6 +39,9 @@ function* onAddProductToPantry(action) {
   });
   yield put({
     type: ACTION_FETCH_PANTRY
+  });
+  yield put({
+    type: ACTION_CLEAR_SEARCH_RESULT
   });
 }
 

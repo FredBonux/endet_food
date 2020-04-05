@@ -68,7 +68,7 @@ const ProductUpdateModal = ({open, closeModal, product, updateProduct, deletePro
 
                 <div className={'form'}>
                     <div className={'input-group card'}>
-                        <div className={'label'}>Quanità</div>
+                        <div className={'label'}>Quantità</div>
                         <input type="text" placeholder={'100 g'} value={qtaValue} onChange={e => setQtaValue(e.target.value)}/>
                     </div>
                     <div className={'input-group card'}>
